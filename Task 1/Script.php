@@ -1,6 +1,13 @@
 <?php
 
 class Script {
+
+    /**
+     * Env names for Redis connection
+     */
+    const REDIS_HOST = 'REDIS_HOST';
+    const REDIS_PORT = 'REDIS_PORT';
+    
     /**
      * Key code default name
      */
@@ -26,8 +33,15 @@ class Script {
      */
     public function __construct()
     {
+        $host = getenv(self::REDIS_HOST) ?? '';
+        $port = getenv(self::REDIS_PORT) ?? '';
+
+        if (empty($host) || empty($port)) {
+            throw new Exception('Redis Host and/or Port were not defined');
+        }
+
         $redis = new Redis();
-        $redis->connect('Redis-7.0', 6379);
+        $redis->connect($host, $port);
         $this->setRedis($redis);
     }
 
