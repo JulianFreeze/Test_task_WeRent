@@ -125,7 +125,7 @@ class Script {
      */
     protected function _launchMainBody():void
     {
-        sleep(60);
+        sleep(5);
     }
 
     /**
