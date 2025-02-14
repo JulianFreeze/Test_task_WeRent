@@ -48,7 +48,7 @@ class Script {
     /**
      * 
      */
-    public function __destructor()
+    public function __destruct()
     {
         $this->closeConnection();
     }
